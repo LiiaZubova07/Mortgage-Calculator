@@ -316,13 +316,37 @@ body {
 	color: #fff;
 }
 
-.order-btn--black:hover, .order-btn--black:focus {
+.order-btn--black:hover,
+.order-btn--black:focus {
 	background-color: #000000;
 	color: #fff;
 }
 
+/*------------------------------------ORDER FORM---------------------*/
 
+.order-form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+}
 
+.order-input {
+	padding: 1em 1em;
+	border: 1px solid #d3d4d4;
+
+}
+
+.order-btn[disabled] {
+	border-color: #c2c2c2;
+	background-color: #c2c2c2;
+	color: #fff;
+	cursor: not-allowed;
+}
+
+.order-input[disabled] {
+	color: #777;
+	cursor: not-allowed;
+}
 
 .summary__item {}
 
@@ -336,9 +360,9 @@ body {
 
 
 
-.order-form {}
 
-.order-input {}
+
+
 
 
 
