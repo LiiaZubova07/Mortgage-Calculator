@@ -85,33 +85,58 @@
 
 			</form>
 
-<!--Col Right-->
-<div class="col-right">
+			<!--Col Right-->
+			<div class="col-right">
 
-<!--Summary-->
-<div class="summary__item summary-item">
-	<div class="summary-item__title">Ежемесячный платёж</div>
-	<div class="summary-item__value summary-item__value--bigger" id="total-month-payment">XXXX</div>
-</div>
-<div class="summary__item summary-item">
-	<div class="summary-item__title">Процентная ставка</div>
-	<div class="summary-item__value summary-item__value--bigger summary-item__value--percernts" id="total-percent">XXXX</div>
-</div>
-<div class="summary__item summary-item">
-	<div class="summary-item__title">Сумма кредита</div>
-	<div class="summary-item__value" id="total-cost">XXXX</div>
-</div>
-<div class="summary__item summary-item">
-	<div class="summary-item__title">Переплата</div>
-	<div class="summary-item__value" id="total-overpayment">XXXX</div>
-</div>
+				<!--Summary-->
+				<div class="summary__item summary-item">
+					<div class="summary-item__title">Ежемесячный платёж</div>
+					<div class="summary-item__value summary-item__value--bigger" id="total-month-payment">XXXX</div>
+				</div>
+				<div class="summary__item summary-item">
+					<div class="summary-item__title">Процентная ставка</div>
+					<div class="summary-item__value summary-item__value--bigger summary-item__value--percernts"
+						id="total-percent">XXXX</div>
+				</div>
+				<div class="summary__item summary-item">
+					<div class="summary-item__title">Сумма кредита</div>
+					<div class="summary-item__value" id="total-cost">XXXX</div>
+				</div>
+				<div class="summary__item summary-item">
+					<div class="summary-item__title">Переплата</div>
+					<div class="summary-item__value" id="total-overpayment">XXXX</div>
+				</div>
 
+				<!--Make order-->
+				<div class="order-form-wrapper">
 
+					<button class="order-btn" id="openFormBtn" type="button">Оставить заявку</button>
 
-</div>
+					<form class="order-form none" id="orderForm">
+						<input name="name" value="" type="text" class="order-input" placeholder="Имя, Фамилия" required>
+						<input name="email" value="info@rightblog.ru" type="email" class="order-input" placeholder="Email"
+							required>
+						<input name="phone" value="+79035354858" type="text" class="order-input" placeholder="Телефон"
+							data-tel-input required>
+						<button type="submit" class="order-btn order-btn--black" id="submitFormBtn">Оформить заявку</button>
+					</form>
+
+					<div id="success" class="alert alert--success none" role="alert">
+						<span class="alert__icon">😀👍</span>
+						<span class="alert__text">Заявка отправлена успешно!</span>
+					</div>
+
+					<div id="error" class="alert alert--danger none" role="alert">
+						<span class="alert__icon">😟</span>
+						<span class="alert__text">Что-то пошло не так. <br>Попробуйте ещё раз</span>
+					</div>
+				</div>
+			</div>
 
 		</div>
 	</div>
+
+	
 
 </body>
 
