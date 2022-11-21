@@ -1,0 +1,76 @@
+@import './reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+
+body {}
+
+.title {
+}
+.col-left {
+}
+.programms-wrapper {
+}
+.radio-hidden {
+}
+.radio-label {
+}
+.params-wrapper {
+}
+.param {
+}
+.param__details {
+}
+.param-title {
+}
+.param__value {
+}
+.param__range-slider {
+}
+.param__limits {
+}
+.limit {
+}
+.limit__from {
+}
+.limit__50 {
+}
+.limit__10 {
+}
+.col-right {
+}
+.summary__item {
+}
+.summary-item {
+}
+.summary-item__title {
+}
+.summary-item__value {
+}
+.summary-item__value--bigger {
+}
+.summary-item__value--percernts {
+}
+.order-form-wrapper {
+}
+.order-btn {
+}
+.order-form {
+}
+.none {
+}
+.order-input {
+}
+.order-btn--black {
+}
+.alert {
+}
+.alert--success {
+}
+.alert__icon {
+}
+.alert__text {
+}
+.alert--danger {
+}
