@@ -248,6 +248,12 @@ body {
 	display: none;
 }
 
+#slider-cost .noUi-connect,
+#slider-downpayment .noUi-connect,
+#slider-term .noUi-connect {
+	background: #21bb57;
+}
+
 #slider-cost .noUi-handle,
 #slider-downpayment .noUi-handle,
 #slider-term .noUi-handle {
@@ -333,7 +339,7 @@ body {
 .order-input {
 	padding: 1em 1em;
 	border: 1px solid #d3d4d4;
-
+	border-radius: 6px;
 }
 
 .order-btn[disabled] {
@@ -348,30 +354,27 @@ body {
 	cursor: not-allowed;
 }
 
-.summary__item {}
+/*-----------------------------------ALERTS-----------------------------*/
 
-.summary-item {}
+.alert {
+	padding: 20px;
+	border-radius: 12px;
+	background-color: #c2c2c2;
+	display: flex;
+	column-gap: 20px;
+	align-items: center;
+	font-size: 18px;
+}
 
-.param {}
+.alert--success {
+	background-color: rgba(142, 241, 201, 0.606);
+	font-weight: 600;
+}
 
-.limit__10 {}
+.alert--danger {
+	background-color: rgba(222, 142, 153, 0.446);
+}
 
-
-
-
-
-
-
-
-
-
-
-.alert {}
-
-.alert--success {}
-
-.alert__icon {}
-
-.alert__text {}
-
-.alert--danger {}
+.alert__icon {
+	font-size: 28px;
+}
