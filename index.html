@@ -21,7 +21,7 @@
 	<div class="container">
 		<div class="title">Ипотечный калькулятор</div>
 		<div class="row">
-			<form action="form" class="col-left">
+			<form id="form" class="col-left">
 
 				<!--programms wrapper-->
 
@@ -29,15 +29,14 @@
 					<input type="radio" name="program" value="base" id="base-value" class="radio-hidden" checked>
 					<label for="base-value" class="radio-label">Базовая программа <span id="base-text">XX</span></label>
 
-					<input type="radio" name="program" value="it" id="base-value" class="radio-hidden">
-					<label for="base-value" class="radio-label">Ипотека для IT <span id="it-text">XX</span></label>
+					<input type="radio" name="program" value="it" id="it-value" class="radio-hidden">
+					<label for="it-value" class="radio-label">Ипотека для IT <span id="it-text">XX</span></label>
 
-					<input type="radio" name="program" value="gov" id="base-value" class="radio-hidden">
-					<label for="base-value" class="radio-label">Господдержка <span id="gov-text">XX</span></label>
+					<input type="radio" name="program" value="gov" id="gov-value" class="radio-hidden">
+					<label for="gov-value" class="radio-label">Господдержка <span id="gov-text">XX</span></label>
 
-					<input type="radio" name="program" value="zero" id="base-value" class="radio-hidden">
-					<label for="base-value" class="radio-label">Без первоначального взноса <span
-							id="zero-text">XX</span></label>
+					<input type="radio" name="program" value="zero" id="zero-value" class="radio-hidden">
+					<label for="zero-value" class="radio-label">Без первоначального взноса <span id="zero-text">XX</span></label>
 				</div>
 
 				<!--params wrapper-->
@@ -45,7 +44,7 @@
 
 					<label class="param">
 						<div class="param__details">
-							<div class="param-title">Стоимость недвижимости</div>
+							<div class="param__title">Стоимость недвижимости</div>
 							<input type="text" class="param__value" value="" inputmode="decimal" id="input-cost">
 						</div>
 						<div class="param__range-slider" id="slider-cost"></div>
@@ -56,9 +55,10 @@
 							<div class="limit__10">100 млн рублей</div>
 						</div>
 					</label>
+
 					<label class="param">
 						<div class="param__details">
-							<div class="param-title">Первоначальный взнос</div>
+							<div class="param__title">Первоначальный взнос</div>
 							<input type="text" class="param__value" value="" inputmode="decimal" id="input-downpayment">
 						</div>
 						<div class="param__range-slider" id="slider-downpayment"></div>
@@ -68,9 +68,10 @@
 							<div class="limit__10">90%</div>
 						</div>
 					</label>
+
 					<label class="param">
 						<div class="param__details">
-							<div class="param-title">Срок кредита</div>
+							<div class="param__title">Срок кредита</div>
 							<input type="text" class="param__value" value="" inputmode="decimal" id="input-term">
 						</div>
 						<div class="param__range-slider" id="slider-term"></div>
