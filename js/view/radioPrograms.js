@@ -12,6 +12,11 @@ function init(getData) {
   document.querySelector('#it-value').value = it;
   document.querySelector('#gov-value').value = gov;
   document.querySelector('#zero-value').value = zero;
+
+  document.querySelector('#base-text').innerText = base;
+  document.querySelector('#it-text').innerText = it;
+  document.querySelector('#gov-text').innerText = gov;
+  document.querySelector('#zero-text').innerText = zero;
 }
 
 export default init;
