@@ -32,7 +32,7 @@ function init(getData) {
           detail: {
             selectedProgram: parseFloat(this.value),
             onUpdate: 'radioProgram',
-				id: this.id,
+            id: this.id,
           },
         })
       );
