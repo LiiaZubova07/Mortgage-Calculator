@@ -9,6 +9,9 @@ function init(getData) {
   //Устанавливаю эти значения в радиокнопку
   //Set program rates in radio buttons
   document.querySelector('#base-value').value = base;
+  document.querySelector('#it-value').value = it;
+  document.querySelector('#gov-value').value = gov;
+  document.querySelector('#zero-value').value = zero;
 }
 
 export default init;
