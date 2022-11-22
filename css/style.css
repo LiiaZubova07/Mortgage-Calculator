@@ -128,7 +128,6 @@ body {
 	clip: rect(0, 0, 0, 0);
 	-webkit-clip-path: inset(100%);
 	clip-path: inset(100%);
-
 }
 
 .radio-label {
@@ -290,18 +289,12 @@ body {
 .order-btn {
 	display: inline-block;
 	padding: 1em 1em;
-
-	/* background-color: #4a9765; */
-
 	background-color: transparent;
-
 	border: 1px solid #212121;
 	border-radius: 6px;
-
 	color: #000;
 	font-size: 16px;
 	font-weight: 600;
-
 	transition: background-color 0.15s ease-in, color 0.15s ease-in;
 }
 
