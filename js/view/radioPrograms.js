@@ -1,5 +1,7 @@
 //код, который будет инициализировать ставки(ХХ)
 
+import updateModel from './../utils/updateModel.js';
+
 function init(getData) {
   const radioBtns = document.querySelectorAll('input[name = "program"]');
 
@@ -20,22 +22,16 @@ function init(getData) {
 
   radioBtns.forEach(function (radioBtn) {
     radioBtn.addEventListener('change', function () {
-      console.log(this);
+      // console.log(this);
       //преобразование в число
-      console.log(parseFloat(parseFloat(this.value)));
-      console.log(this.id);
+      // console.log(parseFloat(parseFloat(this.value)));
+      // console.log(this.id);
 
-      //генерация пользовательского события
-      this.dispatchEvent(
-        new CustomEvent('updateForm', {
-          bubbles: true,
-          detail: {
-            selectedProgram: parseFloat(this.value),
-            onUpdate: 'radioProgram',
-            id: this.id,
-          },
-        })
-      );
+      updateModel(this, {
+        selectedProgram: parseFloat(this.value),
+        onUpdate: 'radioProgram',
+        id: this.id,
+      });
     });
   });
 }
