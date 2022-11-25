@@ -1,5 +1,8 @@
 let data = {
   selectedProgram: 0.1,
+  cost: 12000000,
+  minPrice: 375000,
+  maxPrice: 100000000,
   programs: {
     base: 0.1,
     it: 0.047,
@@ -8,10 +11,19 @@ let data = {
   },
 };
 
+let results = {
+  rate: data.selectedProgram,
+};
+
 function getData() {
   //возвр объект, куда деструктуризирую data
   //чтобы передать в контроллер не ссылку на data, а его копию
   return { ...data };
+}
+function getResults() {
+  //возвр объект, куда деструктуризирую data
+  //чтобы передать в контроллер не ссылку на data, а его копию
+  return { ...results };
 }
 
 function setData(newData) {
@@ -21,7 +33,12 @@ function setData(newData) {
     ...newData,
   };
 
+  results = {
+    rate: data.selectedProgram,
+  };
+
   console.log('Updated Data', data);
+  console.log('New Result', results);
 }
 
-export { getData, setData };
+export { getData, setData, getResults };

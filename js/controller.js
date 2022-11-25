@@ -1,5 +1,8 @@
 import * as Model from './model.js';
+import updateResultsView from './view/updateResultsView.js';
+
 import programs from './view/radioPrograms.js';
+import costInput from './view/costinput.js';
 
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
@@ -8,12 +11,17 @@ window.onload = function () {
   //init programs
   programs(getData);
 
+  //инициализирую запуская costInput
+  costInput(getData);
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
-    console.log('fired');
-    console.log(e.detail);
-
     //в модели будет ф-я, которая будет обновлять данные
     Model.setData(e.detail);
+
+    const data = Model.getData();
+    const results = Model.getResults();
+
+    //Обновляю блок с результатами
+    updateResultsView(results);
   });
 };
