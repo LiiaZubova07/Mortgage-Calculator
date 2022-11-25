@@ -12,7 +12,7 @@ window.onload = function () {
   programs(getData);
 
   //инициализирую запуская costInput
-  costInput();
+  costInput(getData);
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
     //в модели будет ф-я, которая будет обновлять данные

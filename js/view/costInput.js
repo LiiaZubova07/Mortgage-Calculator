@@ -1,4 +1,4 @@
-function init() {
+function init(getData) {
   console.log('FIRED');
 }
 
