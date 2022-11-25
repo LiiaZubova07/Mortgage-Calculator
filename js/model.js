@@ -17,6 +17,11 @@ function getData() {
   //чтобы передать в контроллер не ссылку на data, а его копию
   return { ...data };
 }
+function getResults() {
+  //возвр объект, куда деструктуризирую data
+  //чтобы передать в контроллер не ссылку на data, а его копию
+  return { ...results };
+}
 
 function setData(newData) {
   console.log('New Data', newData);
@@ -33,4 +38,4 @@ function setData(newData) {
   console.log('New Result', results);
 }
 
-export { getData, setData };
+export { getData, setData, getResults };
