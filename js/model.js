@@ -8,6 +8,10 @@ let data = {
   },
 };
 
+let results = {
+  rate: data.selectedProgram,
+};
+
 function getData() {
   //возвр объект, куда деструктуризирую data
   //чтобы передать в контроллер не ссылку на data, а его копию
@@ -21,7 +25,12 @@ function setData(newData) {
     ...newData,
   };
 
+  results = {
+    rate: data.selectedProgram,
+  };
+
   console.log('Updated Data', data);
+  console.log('New Result', results);
 }
 
 export { getData, setData };
