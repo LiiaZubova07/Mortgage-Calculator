@@ -1,6 +1,7 @@
+import updateModel from './../utils/updateModel.js';
+
 function init(getData) {
   const data = getData();
-
   //   console.log('FIRED');
   const input = document.querySelector('#input-cost');
 
@@ -29,6 +30,12 @@ function init(getData) {
         .closest('.param__details')
         .classList.remove('param__details--error');
     }
+
+    //обновить модель
+    updateModel(input, {
+      cost: value,
+      onUpdate: 'inputCost',
+    });
   });
 
   //когда ввели маленькое число будет сбрасываться на минимально допустимое
@@ -47,7 +54,13 @@ function init(getData) {
         .classList.remove('param__details--error');
       cleaveInput.setRawValue(data.minPrice);
     }
+    //обновить модель
+    updateModel(input, {
+      cost: value,
+      onUpdate: 'inputCost',
+    });
   });
+  return cleaveInput;
 }
 
 export default init;

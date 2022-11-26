@@ -13,9 +13,9 @@ window.onload = function () {
   programs(getData);
 
   //инициализирую запуская costInput
-  costInput(getData);
+  const cleaveCost = costInput(getData);
 
-  costRange(getData);
+  const sliderCost = costRange(getData);
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
     //в модели будет ф-я, которая будет обновлять данные
@@ -24,7 +24,24 @@ window.onload = function () {
     const data = Model.getData();
     const results = Model.getResults();
 
+    //Обновить всё, что связано с внешним видом формы, основываясь на данных модели
+    updateFormAndSliders(data);
+
     //Обновляю блок с результатами
     updateResultsView(results);
   });
+
+  function updateFormAndSliders(data) {
+    //costInput
+    if (data.onUpdate !== 'inputCost') {
+      console.log('update Input Cost');
+		cleaveCost.setRawValue(data.cost);
+    }
+
+    //costSlider
+    if (data.onUpdate !== 'costSlider') {
+      console.log('update Cost Slider');
+		sliderCost.noUiSlider.set(data.cost);
+    }
+  }
 };
