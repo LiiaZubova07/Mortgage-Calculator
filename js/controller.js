@@ -1,8 +1,9 @@
 import * as Model from './model.js';
 import updateResultsView from './view/updateResultsView.js';
-
 import programs from './view/radioPrograms.js';
+
 import costInput from './view/costinput.js';
+import costRange from './view/costRange.js';
 
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
@@ -13,6 +14,8 @@ window.onload = function () {
 
   //инициализирую запуская costInput
   costInput(getData);
+
+  costRange(getData);
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
     //в модели будет ф-я, которая будет обновлять данные
