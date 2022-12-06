@@ -1,6 +1,7 @@
 import * as Model from './model.js';
 import updateResultsView from './view/updateResultsView.js';
 import programs from './view/radioPrograms.js';
+import { updateMinPercents } from './view/utils.js';
 
 import costInput from './view/costinput.js';
 import costRange from './view/costRange.js';
@@ -32,16 +33,21 @@ window.onload = function () {
   });
 
   function updateFormAndSliders(data) {
+    //Обновление радиокнопок
+    if (data.onUpdate === 'radioProgram') {
+      updateMinPercents(data);
+    }
+
     //costInput
     if (data.onUpdate !== 'inputCost') {
       console.log('update Input Cost');
-		cleaveCost.setRawValue(data.cost);
+      cleaveCost.setRawValue(data.cost);
     }
 
     //costSlider
     if (data.onUpdate !== 'costSlider') {
       console.log('update Cost Slider');
-		sliderCost.noUiSlider.set(data.cost);
+      sliderCost.noUiSlider.set(data.cost);
     }
   }
 };
