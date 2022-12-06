@@ -32,11 +32,13 @@ function setData(newData) {
   console.log('New Data', newData);
 
   if (newData.onUpdate === 'radioProgram') {
-    if (newData.id === 'zero-value') {
-      data.minPaymentPercents = 0;
-    } else {
-      data.minPaymentPercents = 0.15;
-    }
+    //  if (newData.id === 'zero-value') {
+    //    data.minPaymentPercents = 0;
+    //  } else {
+    //    data.minPaymentPercents = 0.15;
+    //  }
+
+    data.minPaymentPercents = newData.id === 'zero-value' ? 0 : 0.15;
 
     if (newData.onUpdate === 'inputCost') {
       // Обновление цены
