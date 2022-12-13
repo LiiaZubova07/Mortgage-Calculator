@@ -45,6 +45,14 @@ const sliderPayment = paymentRange(getData);
     //Обновление радиокнопок
     if (data.onUpdate === 'radioProgram') {
       updateMinPercents(data);
+
+		//update payment slider
+		sliderPayment.noUiSlider.updateOptions({
+			range: {
+				min: data.minPaymentPercents * 100,
+				max: data.maxPaymentPercents * 100,
+			},
+		});
     }
 
     //costInput
