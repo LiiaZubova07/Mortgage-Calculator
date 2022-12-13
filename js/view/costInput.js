@@ -2,7 +2,6 @@ import updateModel from './../utils/updateModel.js';
 
 function init(getData) {
   const data = getData();
-
   //   console.log('FIRED');
   const input = document.querySelector('#input-cost');
 
@@ -61,6 +60,7 @@ function init(getData) {
       onUpdate: 'inputCost',
     });
   });
+  return cleaveInput;
 }
 
 export default init;
