@@ -37,8 +37,8 @@ function init(getData) {
 
     //обновить модель
     updateModel(input, {
-      cost: value,
-      onUpdate: 'inputCost',
+      payment: value,
+      onUpdate: 'inputPayment',
     });
   });
 
@@ -46,22 +46,23 @@ function init(getData) {
   input.addEventListener('change', function () {
     const value = +cleaveInput.getRawValue();
 
-    if (value > data.maxPrice) {
+    if (value > getData().getMaxPayment()) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
-      cleaveInput.setRawValue(data.maxPrice);
+      cleaveInput.setRawValue(getData().getMaxPayment());
     }
-    if (value < data.minPrice) {
+
+    if (value < getData().getMinPayment()) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
-      cleaveInput.setRawValue(data.minPrice);
+      cleaveInput.setRawValue(getData().getMinPayment());
     }
     //обновить модель
     updateModel(input, {
-      cost: value,
-      onUpdate: 'inputCost',
+      payment: value,
+      onUpdate: 'inputPayment',
     });
   });
   return cleaveInput;
