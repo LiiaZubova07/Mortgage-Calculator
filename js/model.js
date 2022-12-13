@@ -48,15 +48,10 @@ function setData(newData) {
 
     data.minPaymentPercents = newData.id === 'zero-value' ? 0 : 0.15;
 
-    if (newData.onUpdate === 'inputCost') {
-      // Обновление цены
-      // Если стоимость меньше мин цены
-      if (newData.cost < data.minPrice) newData.cost = data.minPrice;
+//если стоимость больше макс цены
+if (newData.cost > data.maxPrice) newData.cost = data.maxPrice;
 
-      // Если стоимость больше макс цены
-      if (newData.cost > data.maxPrice) newData.cost = data.maxPrice;
-    }
-  }
+}
 
   data = {
     ...data,
