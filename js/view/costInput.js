@@ -18,7 +18,6 @@ function init(getData) {
   //прослушка на ввод стоимости
   input.addEventListener('input', function () {
     const value = +cleaveInput.getRawValue();
-    console.log(value);
 
     //проверка на минимальную и максимальную цену
     if (value < data.minPrice || value > data.maxPrice) {
@@ -54,9 +53,10 @@ function init(getData) {
         .classList.remove('param__details--error');
       cleaveInput.setRawValue(data.minPrice);
     }
+
     //обновить модель
     updateModel(input, {
-      cost: value,
+      cost: +cleaveInput.getRawValue(),
       onUpdate: 'inputCost',
     });
   });
