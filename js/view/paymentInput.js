@@ -1,9 +1,7 @@
 import updateModel from '../utils/updateModel.js';
 
 function init(getData) {
-  const data = getData();
-  //   console.log('FIRED');
-  const input = document.querySelector('#input-cost');
+  const input = document.querySelector('#input-downpayment');
 
   const settings = {
     numeral: true,
@@ -13,19 +11,25 @@ function init(getData) {
 
   const cleaveInput = new Cleave(input, settings);
   //установка стартового значения
-  cleaveInput.setRawValue(data.cost);
+  cleaveInput.setRawValue(getData().payment);
 
   //прослушка на ввод стоимости
   input.addEventListener('input', function () {
     const value = +cleaveInput.getRawValue();
     console.log(value);
 
-    //проверка на минимальную и максимальную цену
-    if (value < data.minPrice || value > data.maxPrice) {
+    //проверка на минимальную и максимальную сумму первого платежа
+    if (
+      value < getData().getMinPayment() ||
+      value > getData().getMaxPayment()
+    ) {
       input.closest('.param__details').classList.add('param__details--error');
     }
 
-    if (value >= data.minPrice && value <= data.maxPrice) {
+    if (
+      value >= getData().getMinPayment() &&
+      value <= getData().getMaxPayment()
+    ) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
