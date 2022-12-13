@@ -7,6 +7,7 @@ import costInput from './view/costInput.js';
 import costRange from './view/costRange.js';
 
 import paymentInput from './view/paymentInput.js';
+import paymentRange from './view/paymentRange.js';
 
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
@@ -22,6 +23,8 @@ window.onload = function () {
 
   //инициализирую запуская paymentInput
   const cleavePayment = paymentInput(getData);
+const sliderPayment = paymentRange(getData);
+
 
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
@@ -56,10 +59,9 @@ window.onload = function () {
       sliderCost.noUiSlider.set(data.cost);
     }
 
-//paymentInput
-if(data.onUpdate !== 'inputPayment'){
-	cleavePayment.setRawValue(data.payment);
-}
-
+    //paymentInput
+    if (data.onUpdate !== 'inputPayment') {
+      cleavePayment.setRawValue(data.payment);
+    }
   }
 };

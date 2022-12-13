@@ -40,15 +40,15 @@ function setData(newData) {
   console.log('New Data', newData);
 
   if (newData.onUpdate === 'radioProgram') {
-     if (newData.id === 'zero-value') {
-       data.minPaymentPercents = 0;
-     } else {
-       data.minPaymentPercents = 0.15;
-     }
-   //  data.minPaymentPercents = newData.id === 'zero-value' ? 0 : 0.15;
-	}
+    if (newData.id === 'zero-value') {
+      data.minPaymentPercents = 0;
+    } else {
+      data.minPaymentPercents = 0.15;
+    }
+    //  data.minPaymentPercents = newData.id === 'zero-value' ? 0 : 0.15;
+  }
 
-	 if (newData.onUpdate === 'inputCost' || newData.onUpdate === 'costSlider') {
+  if (newData.onUpdate === 'inputCost' || newData.onUpdate === 'costSlider') {
     //обновление цены
     //если стоимость меньше мин цены
     if (newData.cost < data.minPrice) newData.cost = data.minPrice;
@@ -56,12 +56,11 @@ function setData(newData) {
     //если стоимость больше макс цены
     if (newData.cost > data.maxPrice) newData.cost = data.maxPrice;
 
-
     //если новая стоимость меньше первоначальной
-	 console.log(data.payment);
-	 console.log(data.getMaxPayment());
+    console.log(data.payment);
+    console.log(data.getMaxPayment());
     if (data.payment > data.getMaxPayment()) {
-		console.log('here');
+      console.log('here');
       data.payment = data.getMaxPayment();
     }
 
@@ -69,6 +68,10 @@ function setData(newData) {
     if (data.payment < data.getMinPayment()) {
       data.payment = data.getMinPayment();
     }
+  }
+
+  if (newData.onUpdate === 'paymentSlider') {
+	newData.paymentPercents = newData.paymentPercents / 100;
   }
 
   data = {
