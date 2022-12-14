@@ -13,7 +13,7 @@ function init(getData) {
 
   const cleaveInput = new Cleave(input, settings);
   //установка стартового значения
-  cleaveInput.setRawValue(data.cost);
+  cleaveInput.setRawValue(data.time);
 
   //прослушка на ввод стоимости
   input.addEventListener('input', function () {
@@ -21,11 +21,11 @@ function init(getData) {
     console.log(value);
 
     //проверка на минимальную и максимальную цену
-    if (value < data.minPrice || value > data.maxPrice) {
+    if (value < data.minYear || value > data.maxYear) {
       input.closest('.param__details').classList.add('param__details--error');
     }
 
-    if (value >= data.minPrice && value <= data.maxPrice) {
+    if (value >= data.minYear && value <= data.maxYear) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
@@ -33,8 +33,8 @@ function init(getData) {
 
     //обновить модель
     updateModel(input, {
-      cost: value,
-      onUpdate: 'inputCost',
+      time: value,
+      onUpdate: 'inputTime',
     });
   });
 
@@ -42,22 +42,22 @@ function init(getData) {
   input.addEventListener('change', function () {
     const value = +cleaveInput.getRawValue();
 
-    if (value > data.maxPrice) {
+    if (value > data.maxYear) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
-      cleaveInput.setRawValue(data.maxPrice);
+      cleaveInput.setRawValue(data.maxYear);
     }
-    if (value < data.minPrice) {
+    if (value < data.minYear) {
       input
         .closest('.param__details')
         .classList.remove('param__details--error');
-      cleaveInput.setRawValue(data.minPrice);
+      cleaveInput.setRawValue(data.minYear);
     }
     //обновить модель
     updateModel(input, {
-      cost: value,
-      onUpdate: 'inputCost',
+      time: +cleaveInput.getRawValue(),
+      onUpdate: 'inputTime',
     });
   });
   return cleaveInput;

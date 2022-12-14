@@ -13,6 +13,9 @@ let data = {
   getMaxPayment: function () {
     return this.cost * this.maxPaymentPercents;
   },
+  minYear: 1,
+  maxYear: 30,
+  time: 10,
   programs: {
     base: 0.1,
     it: 0.047,
@@ -79,7 +82,7 @@ function setData(newData) {
       newData.paymentPercents = data.maxPaymentPercents;
       newData.payment = data.cost * newData.maxpaymentPercents;
     }
-	 //если проценты МЕНЬШЕ 90%
+    //если проценты МЕНЬШЕ 90%
     if (newData.paymentPercents < data.minPaymentPercents) {
       newData.paymentPercents = data.minPaymentPercents;
       newData.payment = data.cost * newData.minpaymentPercents;
