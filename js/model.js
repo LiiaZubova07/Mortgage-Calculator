@@ -1,10 +1,18 @@
 let data = {
   selectedProgram: 0.1,
-  cost: 10000000,
+  cost: 12000000,
   minPrice: 375000,
   maxPrice: 100000000,
   minPaymentPercents: 0.15,
   maxPaymentPercents: 0.9,
+  paymentPercents: 0.5,
+  payment: 6000000,
+  getMinPayment: function () {
+    return this.cost * this.minPaymentPercents;
+  },
+  getMaxPayment: function () {
+    return this.cost * this.maxPaymentPercents;
+  },
   programs: {
     base: 0.1,
     it: 0.047,
@@ -31,15 +39,57 @@ function getResults() {
 function setData(newData) {
   console.log('New Data', newData);
 
-if (newData.onUpdate === 'inputCost') {
-//обновить цену
-//если стоимость меньше мин цены
-if (newData.cost < data.minPrice) newData.cost = data.minPrice;
+  if (newData.onUpdate === 'radioProgram') {
+    if (newData.id === 'zero-value') {
+      data.minPaymentPercents = 0;
+    } else {
+      data.minPaymentPercents = 0.15;
+    }
+    //  data.minPaymentPercents = newData.id === 'zero-value' ? 0 : 0.15;
+  }
 
-//если стоимость больше макс цены
-if (newData.cost > data.maxPrice) newData.cost = data.maxPrice;
+  if (newData.onUpdate === 'inputCost' || newData.onUpdate === 'costSlider') {
+    //обновление цены
+    //если стоимость меньше мин цены
+    if (newData.cost < data.minPrice) newData.cost = data.minPrice;
 
-}
+    //если стоимость больше макс цены
+    if (newData.cost > data.maxPrice) newData.cost = data.maxPrice;
+
+    //если новая стоимость меньше первоначальной
+    console.log(data.payment);
+    console.log(data.getMaxPayment());
+    if (data.payment > data.getMaxPayment()) {
+      console.log('here');
+      data.payment = data.getMaxPayment();
+    }
+
+    //если сумма первоначальной меньше, чем допустимый мин платёж
+    if (data.payment < data.getMinPayment()) {
+      data.payment = data.getMinPayment();
+    }
+  }
+
+  if (newData.onUpdate === 'inputPayment') {
+    //пересчитываем проценты
+    newData.paymentPercents = (newData.payment * 100) / data.cost / 100;
+
+    //если проценты БОЛЬШЕ 90%
+    if (newData.paymentPercents > data.maxPaymentPercents) {
+      newData.paymentPercents = data.maxPaymentPercents;
+      newData.payment = data.cost * newData.maxpaymentPercents;
+    }
+	 //если проценты МЕНЬШЕ 90%
+    if (newData.paymentPercents < data.minPaymentPercents) {
+      newData.paymentPercents = data.minPaymentPercents;
+      newData.payment = data.cost * newData.minpaymentPercents;
+    }
+  }
+
+  if (newData.onUpdate === 'paymentSlider') {
+    newData.paymentPercents = newData.paymentPercents / 100;
+    data.payment = data.cost * newData.paymentPercents;
+  }
 
   data = {
     ...data,
