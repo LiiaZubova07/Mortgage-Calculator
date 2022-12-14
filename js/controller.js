@@ -9,6 +9,9 @@ import costRange from './view/costRange.js';
 import paymentInput from './view/paymentInput.js';
 import paymentRange from './view/paymentRange.js';
 
+import timeInput from './view/timeInput.js';
+import timeRange from './view/timeRange.js';
+
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
   const getData = Model.getData;
@@ -23,8 +26,11 @@ window.onload = function () {
 
   //инициализирую запуская paymentInput
   const cleavePayment = paymentInput(getData);
-const sliderPayment = paymentRange(getData);
+  const sliderPayment = paymentRange(getData);
 
+  //инициализирую запуская timeInput
+  const cleaveTime = timeInput(getData);
+  const sliderTime = timeRange(getData);
 
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
@@ -46,13 +52,13 @@ const sliderPayment = paymentRange(getData);
     if (data.onUpdate === 'radioProgram') {
       updateMinPercents(data);
 
-		//update payment slider
-		sliderPayment.noUiSlider.updateOptions({
-			range: {
-				min: data.minPaymentPercents * 100,
-				max: data.maxPaymentPercents * 100,
-			},
-		});
+      //update payment slider
+      sliderPayment.noUiSlider.updateOptions({
+        range: {
+          min: data.minPaymentPercents * 100,
+          max: data.maxPaymentPercents * 100,
+        },
+      });
     }
 
     //costInput
@@ -70,9 +76,19 @@ const sliderPayment = paymentRange(getData);
       cleavePayment.setRawValue(data.payment);
     }
 
-	     //paymentInput
-		  if (data.onUpdate !== 'paymentSlider') {
-			sliderPayment.noUiSlider.set(data.paymentPercents * 100);
-		 }
+    //paymentInput
+    if (data.onUpdate !== 'paymentSlider') {
+      sliderPayment.noUiSlider.set(data.paymentPercents * 100);
+    }
+
+    //обновляю время timeInput
+    if (data.onUpdate !== 'inputTime') {
+      cleaveTime.setRawValue(data.time);
+    }
+
+	 //timeSlider
+	 if (data.onUpdate !== 'timeSlider') {
+		sliderTime.noUiSlider.set(data.time);
+    }
   }
 };
