@@ -10,6 +10,7 @@ import paymentInput from './view/paymentInput.js';
 import paymentRange from './view/paymentRange.js';
 
 import timeInput from './view/timeInput.js';
+import timeRange from './view/timeRange.js';
 
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
@@ -29,6 +30,7 @@ window.onload = function () {
 
   //инициализирую запуская timeInput
   const cleaveTime = timeInput(getData);
+  const sliderTime = timeRange(getData);
 
   //отслеживать, что генерация идёт (прослушка пользовательского события)
   document.addEventListener('updateForm', (e) => {
@@ -77,6 +79,16 @@ window.onload = function () {
     //paymentInput
     if (data.onUpdate !== 'paymentSlider') {
       sliderPayment.noUiSlider.set(data.paymentPercents * 100);
+    }
+
+    //обновляю время timeInput
+    if (data.onUpdate !== 'inputTime') {
+      cleaveTime.setRawValue(data.time);
+    }
+
+	 //timeSlider
+	 if (data.onUpdate !== 'timeSlider') {
+		sliderTime.noUiSlider.set(data.time);
     }
   }
 };

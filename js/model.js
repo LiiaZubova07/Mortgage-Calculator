@@ -94,6 +94,15 @@ function setData(newData) {
     data.payment = data.cost * newData.paymentPercents;
   }
 
+  if (newData.onUpdate === 'inputTime') {
+    if (newData.time > data.maxYear) {
+      newData.time = data.maxYear;
+    }
+    if (newData.time < data.minYear) {
+      newData.time = data.minYear;
+    }
+  }
+
   data = {
     ...data,
     ...newData,
