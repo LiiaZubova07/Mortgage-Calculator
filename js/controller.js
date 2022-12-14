@@ -15,8 +15,8 @@ import timeRange from './view/timeRange.js';
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
   const getData = Model.getData;
-  //отображение программ на странице(ХХ)
 
+  //отображение программ на странице(ХХ)
   //init programs
   programs(getData);
 
@@ -46,6 +46,10 @@ window.onload = function () {
     //Обновляю блок с результатами
     updateResultsView(results);
   });
+
+  Model.setData({});
+  const results = Model.getResults();
+  updateResultsView(results);
 
   function updateFormAndSliders(data) {
     //Обновление радиокнопок
@@ -86,9 +90,9 @@ window.onload = function () {
       cleaveTime.setRawValue(data.time);
     }
 
-	 //timeSlider
-	 if (data.onUpdate !== 'timeSlider') {
-		sliderTime.noUiSlider.set(data.time);
+    //timeSlider
+    if (data.onUpdate !== 'timeSlider') {
+      sliderTime.noUiSlider.set(data.time);
     }
   }
 };
