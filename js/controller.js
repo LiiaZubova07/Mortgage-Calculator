@@ -15,8 +15,8 @@ import timeRange from './view/timeRange.js';
 //весь код в контроллере будет запускаться, кода всё загружено
 window.onload = function () {
   const getData = Model.getData;
-  //отображение программ на странице(ХХ)
 
+  //отображение программ на странице(ХХ)
   //init programs
   programs(getData);
 
@@ -46,6 +46,10 @@ window.onload = function () {
     //Обновляю блок с результатами
     updateResultsView(results);
   });
+
+  Model.setData({});
+  const results = Model.getResults();
+  updateResultsView(results);
 
   function updateFormAndSliders(data) {
     //Обновление радиокнопок
@@ -86,9 +90,106 @@ window.onload = function () {
       cleaveTime.setRawValue(data.time);
     }
 
-	 //timeSlider
-	 if (data.onUpdate !== 'timeSlider') {
-		sliderTime.noUiSlider.set(data.time);
+    //timeSlider
+    if (data.onUpdate !== 'timeSlider') {
+      sliderTime.noUiSlider.set(data.time);
     }
   }
+
+  //Order form
+  const openFormBtn = document.querySelector('#openFormBtn');
+  const orderForm = document.querySelector('#orderForm');
+  const submitFormBtn = document.querySelector('#submitFormBtn');
+
+  //Открытие заявки
+  openFormBtn.addEventListener('click', function () {
+    orderForm.classList.remove('none');
+    openFormBtn.classList.add('none');
+  });
+
+  //Отправка формы
+  orderForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // сбор данных из формы перед disable
+    const formData = new FormData(orderForm);
+    console.log(formData);
+    console.log(formData.get('name'));
+    console.log(formData.get('email'));
+    console.log(formData.get('phone'));
+
+    //disable для кнопки и инпутов
+    submitFormBtn.setAttribute('disabled', true);
+    submitFormBtn.innerText = 'Заявка отправляется...';
+
+    //disable для поля для ввода
+    orderForm.querySelectorAll('input').forEach(function (input) {
+      input.setAttribute('disabled', true);
+    });
+
+    //функция, которая будет отправлять данные с помощью fetch на сервер
+    fetchData();
+    async function fetchData() {
+      const data = Model.getData();
+      const results = Model.getResults();
+
+      //куда отправлять данные
+      //код сделает так, чтоб вместо index.html появлялся mail.php
+      let url = checkOnUrl(document.location.href);
+
+      function checkOnUrl(url) {
+        //http://127.0.0.1:5500/index.html
+        let urlArrayDot = url.split('.');
+
+        if (urlArrayDot[urlArrayDot.length - 1] === 'html') {
+          //если в конце после точки html, тогда убираем этот html
+          urlArrayDot.pop();
+          //разбить по слэшу
+          let newUrl = urlArrayDot.join('.');
+          let urlArraySlash = newUrl.split('/');
+          urlArraySlash.pop();
+          newUrl = urlArraySlash.join('/') + '/';
+          return newUrl;
+        }
+        return url;
+      }
+
+      const response = await fetch(url + 'mail.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          form: {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+          },
+          data,
+          results,
+        }),
+      });
+
+      const result = await response.text();
+      console.log(result);
+
+      submitFormBtn.removeAttribute('disabled', true);
+      submitFormBtn.innerText = 'Оформить заявку';
+
+      orderForm.querySelectorAll('input').forEach((input) => {
+        input.removeAttribute('disabled', true);
+      });
+
+      //очистить поля формы
+      orderForm.reset();
+      orderForm.classList.add('none');
+
+      //на основе ответа от сервера показываем сообщения об успехе или ошибке
+      if (result === 'SUCCESS') {
+        document.getElementById('success').classList.remove('none');
+      } else {
+        document.getElementById('error').classList.remove('none');
+      }
+    }
+  });
 };
