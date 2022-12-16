@@ -2,6 +2,7 @@
 
 // echo "Hello from PHP!";
 
+//получение данных из JSON
 $data = json_decode(file_get_contents("php://input"), true);
 // echo "\n\nJSON array from POST: \n";
 // print_r($data);
