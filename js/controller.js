@@ -171,25 +171,25 @@ window.onload = function () {
       });
 
       const result = await response.text();
-		console.log(result);
+      console.log(result);
 
-		submitFormBtn.removeAttribute('disabled', true);
-		submitFormBtn.innerText = 'Оформить заявку';
+      submitFormBtn.removeAttribute('disabled', true);
+      submitFormBtn.innerText = 'Оформить заявку';
 
-		orderForm.querySelectorAll('input').forEach((input) => {
-			input.removeAttribute('disabled', true);
-		});
+      orderForm.querySelectorAll('input').forEach((input) => {
+        input.removeAttribute('disabled', true);
+      });
 
-		//очистить поля формы
-		orderForm.reset();
-		orderForm.classList.add('none');
+      //очистить поля формы
+      orderForm.reset();
+      orderForm.classList.add('none');
 
-		//на основе ответа от сервера показываем сообщения об успехе или ошибке
-		if (result === "SUCCESS"){
-			document.getElementById('success').classList.remove('none');
-			} else {
-				document.getElementById('error').classList.remove('none');
-			}
+      //на основе ответа от сервера показываем сообщения об успехе или ошибке
+      if (result === 'SUCCESS') {
+        document.getElementById('success').classList.remove('none');
+      } else {
+        document.getElementById('error').classList.remove('none');
+      }
     }
   });
 };
